@@ -16,5 +16,7 @@ public class TbuserController {
     public Tbuser selectByPrimaryKey (@RequestParam("id") int id) {
         return tbuserService.selectByPrimaryKey(id);
     }
-
+    public Tbuser deleteByPrimaryKey (@RequestParam("id") int id) {
+        return tbuserService.selectByPrimaryKey(id);
+    }
 }
