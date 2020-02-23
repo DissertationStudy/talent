@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	
 	<link rel="stylesheet" type="text/css" href="css/layui.css"/>
+	<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
 </head>
 
 <body>
@@ -26,13 +27,13 @@
 				<img src="images/login.png" alt="IMG" style="height: 100%;">
 			</div>
 
-			<form class="login100-form validate-form">
+			<div class="login100-form validate-form">
 				<span class="login100-form-title">
 					用户登录
 				</span>
 
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="text" name="email" placeholder="账号">
+					<input class="input100" type="text" name="email" placeholder="账号" id="username">
 					<span class="focus-input100"></span>
 					<span class="symbol-input100">
 						<i class="layui-icon layui-icon-username" aria-hidden="true"></i>
@@ -40,7 +41,7 @@
 				</div>
 
 				<div class="wrap-input100 validate-input">
-					<input class="input100" type="password" name="pass" placeholder="密码">
+					<input class="input100" type="password" name="pass" placeholder="密码" id="userpwd">
 					<span class="focus-input100"></span>
 					<span class="symbol-input100">
 						<i class="layui-icon layui-icon-password" aria-hidden="true"></i>
@@ -48,7 +49,7 @@
 				</div>
 				
 				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">
+					<button class="login100-form-btn" id="login">
 						登陆
 					</button>
 				</div>
@@ -58,12 +59,44 @@
 						忘记密码？
 					</a>
 				</div>
-
-				
-			</form>
+			</div>
 		</div>
 	</div>
 </div>
-
 </body>
+<script>
+	$(function(){
+		$("#login").click(function(){
+			var username = $("#username").val();
+			var userpwd = $("#userpwd").val();
+				if(username==null || username=="") {
+					alert("账号不能为空!");
+					$("#username").focus(); //获取焦点
+					return;
+				}
+				if(userpwd==null || userpwd=="") {
+					alert("密码不能为空!");
+					$("#userpwd").focus(); //获取焦点
+					return;
+				}
+				
+				var url = "http://localhost:8080/tbuser/selectByIdOrUsernameAndPwd";
+				datas = {
+					"id": username,
+					"userpwd":userpwd
+				}
+				$.post(url,datas,function(result){
+					if(result) {
+						window.location.href="index.html";
+						window.localStorage.setItem("userList",JSON.stringify(result));
+
+					}
+					else {
+						alert("用户名或密码错误！！")
+					}
+				});
+		
+		});
+	})
+</script>
 </html>

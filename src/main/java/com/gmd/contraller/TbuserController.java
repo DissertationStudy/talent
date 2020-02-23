@@ -16,7 +16,17 @@ public class TbuserController {
     public Tbuser selectByPrimaryKey (@RequestParam("id") int id) {
         return tbuserService.selectByPrimaryKey(id);
     }
-    public Tbuser deleteByPrimaryKey (@RequestParam("id") int id) {
-        return tbuserService.selectByPrimaryKey(id);
+
+    /*
+    *功能描述
+    *@autho helang
+    *@data
+    *@param  用户名和密码判断
+    *@return true
+     */
+    @RequestMapping("/selectByIdOrUsernameAndPwd")
+    public Tbuser selectByIdOrUsernameAndPwd (Tbuser tbuser) {
+        tbuser = tbuserService.selectByIdOrUsernameAndPwd(tbuser);
+    return tbuser;
     }
 }

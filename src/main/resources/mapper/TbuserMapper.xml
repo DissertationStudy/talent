@@ -20,6 +20,10 @@
     from tbuser
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByIdOrUsernameAndPwd" resultMap="BaseResultMap" parameterType="com.gmd.pojo.Tbuser" >
+    select id,username,userpwd from tbuser
+    where id = #{id,jdbcType=INTEGER} and userpwd = #{userpwd,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tbuser
     where id = #{id,jdbcType=INTEGER}

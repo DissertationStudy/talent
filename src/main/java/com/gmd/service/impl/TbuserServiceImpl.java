@@ -18,12 +18,12 @@ public class TbuserServiceImpl implements TbuserService {
 
     @Override
     public int insert(Tbuser record) {
-        return this.insert(record);
+        return this.tbuserMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Tbuser record) {
-        return this.insertSelective(record);
+        return this.tbuserMapper.insertSelective(record);
     }
 
     @Override
@@ -33,11 +33,16 @@ public class TbuserServiceImpl implements TbuserService {
 
     @Override
     public int updateByPrimaryKeySelective(Tbuser record) {
-        return this.updateByPrimaryKeySelective(record);
+        return this.tbuserMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Tbuser record) {
-        return this.updateByPrimaryKey(record);
+        return this.tbuserMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public Tbuser selectByIdOrUsernameAndPwd(Tbuser record) {
+        return this.tbuserMapper.selectByIdOrUsernameAndPwd(record);
     }
 }

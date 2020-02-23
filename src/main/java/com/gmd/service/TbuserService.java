@@ -21,4 +21,6 @@ public interface TbuserService {
     int updateByPrimaryKeySelective(Tbuser record);
 
     int updateByPrimaryKey(Tbuser record);
+
+    Tbuser selectByIdOrUsernameAndPwd (Tbuser record);
 }
